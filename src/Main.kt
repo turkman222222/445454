@@ -5,33 +5,33 @@ import kotlin.math.abs
 fun main() {
 
     println("сколько точек хотите создать?")
-    val valueOfDots = readln()?.toInt() ?: throw IllegalArgumentException("неверный ввод")
-    val dots:MutableSet<Dot> = mutableSetOf()
+    val point = readln()?.toInt() ?: throw IllegalArgumentException("неверный ввод")
+    val points:MutableSet<Dot> = mutableSetOf()
 
     //запихиваем рандомные точки в сет
-    while (dots.size != valueOfDots) {
+    while (points.size != point) {
 
         val x = (1..100).random().toDouble()
         val y = (1..100).random().toDouble()
 
-        dots.add(Dot(x, y))
+        points.add(Dot(x, y))
     }
 
 
     var minDist:Double = Double.MAX_VALUE
-    for (dot1 in dots) {
-        for (dot2 in dots) {
-            if (dot1 != dot2) {
+    for (a in points) {
+        for (b in points) {
+            if (a != b) {
 
-                val dist = sqrt(abs((dot1._X - dot2._X)).pow(2) + abs((dot1._Y - dot2._Y)).pow(2))
+                val dist = sqrt(abs((a._X - b._X)).pow(2) + abs((a._Y - b._Y)).pow(2))
                 if (dist < minDist) minDist = dist
             }
         }
     }
 
     var maxDist:Double = Double.MIN_VALUE
-    for (dot1 in dots) {
-        for (dot2 in dots) {
+    for (dot1 in points) {
+        for (dot2 in points) {
             if (dot1 != dot2) {
 
                 val dist = sqrt((abs((dot1._X - dot2._X)).pow(2)) + (abs((dot1._Y - dot2._Y)).pow(2)))
